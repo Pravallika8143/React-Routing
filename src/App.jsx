@@ -31,7 +31,7 @@ function App() {
   );
 }
 
-export default App
+export default App;
 
 // 1. links
 // 2. routes
