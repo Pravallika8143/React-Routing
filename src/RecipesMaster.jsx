@@ -16,7 +16,7 @@ function Recipes() {
         })}
       </ul>
     </div>
-  );
+  )
 }
 
 export default Recipes
