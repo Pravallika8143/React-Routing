@@ -1,5 +1,5 @@
 import React from "react";
-import students from "./assets/students.json";
+import students from "./assets/students.json"
 
 function StudentsTable() {
   var [allstudents, setStudents] = React.useState([...students]);
