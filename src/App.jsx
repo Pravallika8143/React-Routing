@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="border border-3 p-2 m-2 border-black">
       <h1>This is APP</h1>
-      <ul className='d-flex flex-wrap justify-content-between'>
+      <ul className='d-flex flex-wrap justify-content-between list-unstyled'>
         <li>
           <Link to="/counter" style={{textDecoration:"none", color:"black"}}>Counter</Link>
         </li>
