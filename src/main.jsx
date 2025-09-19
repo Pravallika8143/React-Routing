@@ -45,13 +45,3 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
 );
-
-//  <li>
-//           <Link to="/todolist">Todolist</Link>
-//         </li>
-//         <li>
-//           <Link to="/studentlist">All Student</Link>
-//         </li>
-//         <li>
-//           <Link to="/addStudent">NewStudent</Link>
-//         </li>
