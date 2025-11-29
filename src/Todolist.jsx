@@ -65,9 +65,9 @@ function TodoList(){
 
     // UI
     return (
-        <div className="border border-success border-5 p-2 m-2">
+        <div className=" p-2 m-2 tect-center">
             <h1>TodoList</h1>
-            <input type="text" id="d1"/>
+            <input type="text" placeholder="Enter Todo" id="d1"/>
             <button  style={{marginLeft:"2%"}}onClick={()=>{addTodo()}}>AddTodo</button>
             <ul>
                 {

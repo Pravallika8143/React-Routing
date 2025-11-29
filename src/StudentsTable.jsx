@@ -1,126 +1,125 @@
 import React from "react";
-import students from "./assets/students.json"
+import students from "./assets/students.json";
 
 function StudentsTable() {
-  var [allstudents, setStudents] = React.useState([...students]);
-  var [startIndex, setStartIndex] = React.useState(10);
-  var [endIndex, setEndIndex] = React.useState(15);
-  function sortByKey(key) {
-    // var temp = [...allstudents];
-    // temp.sort(function(a,b){
-    //   if(a[key]>b[key]){return 1}
-    //   else{return -1}
-    // })
+  const [allstudents, setStudents] = React.useState([...students]);
+  const [startIndex, setStartIndex] = React.useState(10);
+  const [endIndex, setEndIndex] = React.useState(15);
 
-    setStudents(function (currentStudents) {
-      currentStudents.sort((a, b) => {
-        if (a[key] > b[key]) {
-          return 1;
-        } else {
-          return -1;
-        }
-      });
-      return [...currentStudents];
+  function sortByKey(key) {
+    setStudents((currentStudents) => {
+      const sorted = [...currentStudents].sort((a, b) =>
+        a[key] > b[key] ? 1 : -1
+      );
+      return sorted;
     });
   }
+
   function next5() {
     setStartIndex(startIndex + 5);
     setEndIndex(endIndex + 5);
   }
+
   return (
-    <div>
-      <button
-        onClick={() => {
-          next5();
-        }}
-      >
-        Next 5
-      </button>
-      <table border="2" className="table table-striped">
-        <thead>
+    <div className="container mt-4">
+
+      <div className="card shadow-sm p-3 mb-4">
+        <div className="d-flex justify-content-between align-items-center">
+          <h2 className="m-0">Students List</h2>
+
+          <button
+            className="btn btn-primary"
+            onClick={next5}
+          >
+            Next 5
+          </button>
+        </div>
+      </div>
+
+      <table className="table table-hover table-bordered text-center shadow-sm">
+        <thead className="table-dark">
           <tr>
-            <th></th>
+            <th>Photo</th>
             <th
-              onClick={() => {
-                sortByKey("name");
-              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => sortByKey("name")}
             >
-              Name
+              Name ⬍
             </th>
             <th
-              onClick={() => {
-                sortByKey("gender");
-              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => sortByKey("gender")}
             >
-              Gender
+              Gender ⬍
             </th>
             <th
-              onClick={() => {
-                sortByKey("fatherName");
-              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => sortByKey("fatherName")}
             >
-              Father Name
+              Father Name ⬍
             </th>
             <th
-              onClick={() => {
-                sortByKey("motherName");
-              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => sortByKey("motherName")}
             >
-              Mother Name
+              Mother Name ⬍
             </th>
             <th
-              onClick={() => {
-                sortByKey("age");
-              }}
+              style={{ cursor: "pointer" }}
+              onClick={() => sortByKey("age")}
             >
-              Age
+              Age ⬍
             </th>
           </tr>
         </thead>
+
         <tbody>
-          {allstudents.slice(startIndex, endIndex).map((student) => {
-            return (
-              <tr
-                style={
-                  student.gender === "Female"
-                    ? { backgroundColor: "lightpink" }
-                    : { backgroundColor: "lightblue" }
-                }
-              >
+          {allstudents.slice(startIndex, endIndex).map((student, index) => (
+            <tr
+              key={index}
+              className={
+                student.gender === "Female"
+                  ? "table-danger"
+                  : "table-info"
+              }
+            >
+              <td>
                 {student.gender === "Male" && (
-                  <td>
-                    <img
-                      width="50px"
-                      src="https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-business-male-icon-vector-png-image_916468.jpg"
-                      alt=""
-                    />
-                  </td>
+                  <img
+                    width="50"
+                    className="rounded-circle border"
+                    src="https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-business-male-icon-vector-png-image_916468.jpg"
+                    alt="male"
+                  />
                 )}
+
                 {student.gender === "Female" && (
-                  <td>
-                    <img
-                      width="50px"
-                      src="https://png.pngtree.com/png-vector/20190118/ourmid/pngtree-vector-female-student-icon-png-image_326761.jpg"
-                      alt=""
-                    />
-                  </td>
+                  <img
+                    width="50"
+                    className="rounded-circle border"
+                    src="https://png.pngtree.com/png-vector/20190118/ourmid/pngtree-vector-female-student-icon-png-image_326761.jpg"
+                    alt="female"
+                  />
                 )}
-                <td>{student.name}</td>
-                <td>{student.gender}</td>
-                <td>{student.fatherName}</td>
-                <td>{student.motherName}</td>
-                <td>{student.age}</td>
-              </tr>
-            );
-          })}
+              </td>
+
+              <td className="fw-bold">{student.name}</td>
+              <td>{student.gender}</td>
+              <td>{student.fatherName}</td>
+              <td>{student.motherName}</td>
+              <td>{student.age}</td>
+            </tr>
+          ))}
         </tbody>
-        <tfoot>
-          <tr>
-            <th>Praveen Sir Code, naadi kadu</th>
-          </tr>
-        </tfoot>
       </table>
+
+      {/* <div className="text-center mt-3">
+        <button className="btn btn-outline-secondary" onClick={next5}>
+          Load More
+        </button>
+      </div> */}
     </div>
   );
 }
+
 export default StudentsTable;
